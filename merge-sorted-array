@@ -1,0 +1,32 @@
+class Solution {
+    public void merge(int[] arr1, int m, int[] arr2, int n) {
+        int mn = m + n - 1;
+        int i = m - 1;
+        int j = n - 1;
+        if(m != 0 && n != 0){
+        while(i >= 0 && j >= 0){
+            if(arr2[j] > arr1[i]){
+                arr1[mn] = arr2[j];
+                j--;
+            }
+            else{
+                arr1[mn] = arr1[i];
+                i--;
+            }
+            mn--;
+        }
+            while(j >= 0){
+            arr1[mn] = arr2[j];
+            j--;
+            mn--;
+        }
+       }
+        else{
+            if(m == 0){
+                for(int x = 0; x < n; x++){
+                arr1[x] = arr2[x];
+                }
+            }
+        }
+    }
+}
