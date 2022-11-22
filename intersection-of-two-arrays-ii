@@ -1,0 +1,27 @@
+class Solution {
+    public int[] intersect(int[] arr1, int[] arr2) {
+        int n = arr1.length;
+        int m = arr2.length;
+        ArrayList<Integer> result = new ArrayList<>();
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        for(int i = 0; i < n; i++){
+            if(hm.containsKey(arr1[i])){
+                hm.put(arr1[i],hm.get(arr1[i])+1);
+            }
+            else{
+                hm.put(arr1[i],1);
+            }
+        }
+        for(int i = 0; i < m; i++){
+            if(hm.containsKey(arr2[i]) && hm.get(arr2[i]) > 0){
+                hm.put(arr2[i],hm.get(arr2[i])-1);
+                result.add(arr2[i]);
+            }
+        }
+        int fin[] = new int[result.size()];
+        for(int i = 0 ; i < result.size(); i++){
+            fin[i] = result.get(i);
+        }
+        return fin;
+    }
+}
