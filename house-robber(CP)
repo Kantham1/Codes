@@ -10,6 +10,19 @@ class Solution {
         for(int i = 2; i < dp.length-1; i++){
             dp[i] = Math.max(dp[i - 2] + nums[i], dp[i -1]);
         }
+        // for(int i = 0; i < dp.length; i++)
+        //     System.out.print(dp[i]+" ");
         return dp[n-1];
     }
 }
+
+/*
+dp[i] = Math.max(dp[i - 2] + nums[i], dp[i -1]);
+if we are at house 3, we need to take a decision, if we rob house-3 will i get max profit at the end or not?
+How to choose??
+------------------
+0 |1 |2 |3 |  these are indices
+consider we are at index 3, how we should think is
+we have to check prev indxes values, and think this rob will make value addition or not
+if [3+1]  < [2] -> skip robbing 3 and go for 4
+*/
