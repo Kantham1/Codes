@@ -1,0 +1,46 @@
+
+// We could break down the array in two cases:
+
+// 1: the subarray we are looking for is in the middle: xxxxxxxxxxx
+// 2. the subarray we are looking for are on both sides:
+// xxxxxxxxxxx
+
+// For case 1, we are solving question 53. Maximum Subarray, using Kardane's algorithm.
+
+// For case 2, we could find the Minimum Subarray which would be the sum of numbers in the middle section. Take the sum of the entire array, subtract the middle section sum(min sum) to get the maximum sum.
+
+
+
+class Solution {
+    public int findMiddleMin(int[] nums) {
+        int curr = nums[0];
+        int ans = nums[0];
+        for(int i = 1; i < nums.length; i++){
+            curr = Math.min(nums[i], curr + nums[i]);
+            ans= Math.min(curr, ans);
+        }
+        return ans;
+    }
+    public int findMiddleMax(int[] nums) {
+        int curr = nums[0];
+        int ans = nums[0];
+        for(int i = 1; i < nums.length; i++){
+            curr = Math.max(nums[i], curr + nums[i]);
+            ans= Math.max(curr, ans);
+        }
+        return ans;
+    }
+    public int maxSubarraySumCircular(int[] nums) {
+        int sum = 0;
+        for(int i: nums){
+            sum += i;
+        }
+        int min = findMiddleMin(nums);
+        int max= findMiddleMax(nums);
+
+        if(min == sum){
+            return max;
+        }
+        return Math.max(max, sum - min);
+    }
+}
